@@ -17,9 +17,9 @@ export default function RootLayout({children}: Readonly<{
 }>) {
     return (
         <html lang="en">
-        <body className={inter.className}>
+        <body className={`${inter.className} body-container`}>
         <NavBar/>
-        <main>
+        <main className="main">
             {children}
         </main>
         </body>

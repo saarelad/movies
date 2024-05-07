@@ -23,8 +23,8 @@ export default function TitleFilter() {
     };
 
     return (
-        <div className="my-3 d-flex gap-3 justify-content-center">
-            <span className="text-primary bg-dark-subtle disabled">Filter by title:</span>
+        <div className="py-1 d-flex gap-3 justify-content-center bg-dark-subtle">
+            <span className="text-primary">Filter by title:</span>
             <input
                 type="text"
                 className="rounded"
