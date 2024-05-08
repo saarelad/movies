@@ -1,7 +1,9 @@
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./globals.css";
-import {NavBar} from "@/app/components/NavBar";
+import {NavBar} from "@/app/components/layout/NavBar";
+import Footer from "@/app/components/layout/Footer";
+import {Header} from "@/app/components/layout/Header";
 
 
 const inter = Inter({subsets: ["latin"]});
@@ -12,19 +14,20 @@ export const metadata: Metadata = {
 };
 
 
+
 export default function RootLayout({children}: Readonly<{
     children: React.ReactNode;
 }>) {
 
     return (
         <html lang="en">
-            <body className={`${inter.className} vh-100 overflow-hidden d-flex flex-column`}>
-                <NavBar/>
-                <main className="d-flex flex-grow-1 overflow-auto">
-                    {children}
-                </main>
-                <footer className="footer">All rights reserved</footer>
-            </body>
+        <body className={`${inter.className} vh-100 overflow-hidden d-flex flex-column`}>
+        <Header/>
+        <main className="d-flex flex-grow-1 overflow-auto">
+            {children}
+        </main>
+        <Footer/>
+        </body>
         </html>
     );
 }

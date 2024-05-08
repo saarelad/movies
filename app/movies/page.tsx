@@ -1,6 +1,6 @@
 import {getImageConfig} from "@/app/_lib/image-config-api";
-import TitleFilter from "@/app/components/TitleFilter";
-import {MoviesGrid} from "@/app/components/MoviesGrid";
+import TitleFilter from "@/app/components/movies/TitleFilter";
+import {MoviesGrid} from "@/app/components/movies/MoviesGrid";
 import {getMovies} from "@/app/_lib/movies-api";
 
 

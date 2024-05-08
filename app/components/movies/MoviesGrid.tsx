@@ -1,4 +1,4 @@
-import MovieCard from "@/app/components/MovieCard";
+import MovieCard from "@/app/components/movies/MovieCard";
 import {ImageConfig} from "@/app/_model/config";
 import {Movie} from "@/app/_model/movie";
 

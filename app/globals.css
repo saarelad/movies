@@ -11,4 +11,6 @@
     background-color: lightgray;
     color: black;
     text-align: center;
+    display: flex;
+    gap: 2px;
 }
