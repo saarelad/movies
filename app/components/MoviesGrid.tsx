@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const MoviesGrid = async ({imageConfig, movies}: Props) => {
-        return (
+    return (
         <div className="d-flex flex-sm-wrap p-2">
             {movies.map(movie => <MovieCard key={movie.id} movie={movie} imageConfig={imageConfig}/>)}
         </div>

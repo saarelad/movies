@@ -1,9 +1,10 @@
 "use client";
 
 import {usePathname, useRouter, useSearchParams} from "next/navigation";
-import {ChangeEvent, useCallback} from "react";
+import {ChangeEvent, useCallback, useEffect, useState} from "react";
 
 export default function TitleFilter() {
+    const [searchTerm, setSearchTerm] = useState<string>("")
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -18,19 +19,35 @@ export default function TitleFilter() {
         [searchParams]
     );
 
+    useEffect(() => {
+        setSearchTerm(searchParams.get("filter") || "");
+    }, []);
+
+    useEffect(() => {
+        searchTerm ?
+            router.push(`${pathname}?${createQueryString("filter", searchTerm)}`) :
+            router.push(`${pathname}`);
+    }, [searchTerm]);
+
+
     const applyFilter = (e: ChangeEvent<HTMLInputElement>) => {
-        router.push(`${pathname}?${createQueryString("filter", e.target.value)}`)
+        setSearchTerm(e.target.value);
+    };
+
+    const handleReset = () => {
+        setSearchTerm("");
     };
 
     return (
-        <div className="py-1 d-flex gap-3 justify-content-center bg-dark-subtle">
+        <div className="py-1 d-flex gap-2 justify-content-center align-items-center bg-dark-subtle">
             <span className="text-primary">Filter by title:</span>
             <input
                 type="text"
                 className="rounded"
-                value={searchParams.get("filter") || ""}
+                value={searchTerm}
                 onChange={applyFilter}
             />
+            <button className="btn btn-primary" onClick={handleReset}>Reset</button>
         </div>
     );
 }

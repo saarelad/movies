@@ -1,11 +1,9 @@
-import config from "@/next.config.mjs";
-import {MovieDetails} from "@/app/_model/movie";
-import FETCH_OPTIONS from "@/app/_lib/fetch-config";
 import {getPosterUrl} from "@/app/_lib/poster-url";
 import {getImageConfig} from "@/app/_lib/image-config-api";
 import Image from "next/image";
 import Link from "next/link";
-import { TiArrowBack } from "react-icons/ti";
+import {TiArrowBack} from "react-icons/ti";
+import {getMovie} from "@/app/_lib/movies-api";
 
 
 interface Props {
@@ -14,9 +12,7 @@ interface Props {
 
 const MovieDetailsPage = async ({params}: Props) => {
     const {movieId} = params;
-    const moviesUrl = `${config.env?.MOVIES_BASE_URL}/movie/${movieId}`;
-    const res = await fetch(moviesUrl, FETCH_OPTIONS);
-    const movie: MovieDetails = await res.json();
+    const movie = await getMovie(movieId);
     const imageConfig = await getImageConfig();
     const posterUrl = getPosterUrl(movie.poster_path, imageConfig);
     return (

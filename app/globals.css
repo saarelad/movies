@@ -11,3 +11,7 @@
     flex: 1;
     overflow-y: auto;
 }
+
+.spinner {
+    animation: spin 1s infinite linear;
+}
