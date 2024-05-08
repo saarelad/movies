@@ -27,7 +27,7 @@ export default function TitleFilter() {
         searchTerm ?
             router.push(`${pathname}?${createQueryString("filter", searchTerm)}`) :
             router.push(`${pathname}`);
-    }, [searchTerm, pathname, router,createQueryString]);
+    }, [searchTerm, pathname, router, createQueryString]);
 
 
     const applyFilter = (e: ChangeEvent<HTMLInputElement>) => {
