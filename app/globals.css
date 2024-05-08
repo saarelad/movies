@@ -1,17 +1,14 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-.body-container {
-    width: 100%;
+.layout {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
 }
 
-.main {
-    flex: 1;
-    overflow-y: auto;
-}
-
-.spinner {
-    animation: spin 1s infinite linear;
+.footer {
+    height: 50px;
+    background-color: lightgray;
+    color: black;
+    text-align: center;
 }

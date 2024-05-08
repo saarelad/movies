@@ -20,10 +20,12 @@ const MoviesPage = async ({searchParams}: Props) => {
     });
 
     return (
-        <>
+        <div className="d-flex flex-column min-vw-100 overflow-hidden">
             <TitleFilter/>
-            <MoviesGrid imageConfig={imageConfig} movies={filteredMovies}></MoviesGrid>
-        </>
+            <div className="overflow-auto">
+                <MoviesGrid imageConfig={imageConfig} movies={filteredMovies}></MoviesGrid>
+            </div>
+        </div>
     );
 }
 

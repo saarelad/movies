@@ -21,13 +21,13 @@ export default function TitleFilter() {
 
     useEffect(() => {
         setSearchTerm(searchParams.get("filter") || "");
-    }, []);
+    }, [searchParams]);
 
     useEffect(() => {
         searchTerm ?
             router.push(`${pathname}?${createQueryString("filter", searchTerm)}`) :
             router.push(`${pathname}`);
-    }, [searchTerm]);
+    }, [searchTerm, pathname, router,createQueryString]);
 
 
     const applyFilter = (e: ChangeEvent<HTMLInputElement>) => {
@@ -39,7 +39,7 @@ export default function TitleFilter() {
     };
 
     return (
-        <div className="py-1 d-flex gap-2 justify-content-center align-items-center bg-dark-subtle">
+        <div className="d-flex gap-2 py-1 justify-content-center align-items-center bg-dark-subtle">
             <span className="text-primary">Filter by title:</span>
             <input
                 type="text"
