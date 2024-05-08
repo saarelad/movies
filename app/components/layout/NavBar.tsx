@@ -14,12 +14,12 @@ export const NavBar = () => {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link href="/movies" className={pathname.includes("/movies") ? "active nav-link" : "nav-link"}>
+                        <Link href={"/movies"} className={pathname.includes("/movies") ? "active nav-link" : "nav-link"}>
                             Movies
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <Link href="/about" className={pathname.includes("/about") ? "active nav-link" : "nav-link"}>
+                        <Link href={"/about"} className={pathname.includes("/about") ? "active nav-link" : "nav-link"}>
                             About
                         </Link>
                     </li>
