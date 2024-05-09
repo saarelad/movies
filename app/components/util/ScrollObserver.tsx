@@ -12,7 +12,7 @@ interface Props {
     filter: string;
 }
 
-// Todo: Implement a generic scroll observer to support multiple grids and data types
+// Todo: Should be a generic scroll observer to decouple from the movie interface and api and support other grids
 export const ScrollObserver = ({imageConfig, filter}: Props) => {
     const [movies, setMovies] = useState<Movie[]>([])
     const [pageLoaded, setPageLoaded] = useState(0);
@@ -43,8 +43,8 @@ export const ScrollObserver = ({imageConfig, filter}: Props) => {
     return (
         <>
             <MoviesGrid imageConfig={imageConfig} movies={filterMovies(movies)}/>
-            <div ref={ref} className="text-center">
-                Loading...
+            <div className="d-flex justify-content-center">
+                <div ref={ref} className="spinner-border text-primary" role="status"/>
             </div>
         </>
     );

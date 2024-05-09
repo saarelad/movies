@@ -1,5 +1,5 @@
 import config from "@/next.config.mjs";
-import FETCH_OPTIONS from "@/app/_lib/fetch-config";
+import FETCH_OPTIONS from "@/app/_lib/fetch-options";
 import {ImageConfig} from "@/app/_model/config";
 
 export const getImageConfig = async (): Promise<ImageConfig> => {
