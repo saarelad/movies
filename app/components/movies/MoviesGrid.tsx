@@ -7,7 +7,7 @@ interface Props {
     movies: Movie[]
 }
 
-export const MoviesGrid = async ({imageConfig, movies}: Props) => {
+export const MoviesGrid = ({imageConfig, movies}: Props) => {
     return (
         <div className="d-flex flex-fill flex-sm-wrap m-2 overflow-auto justify-content-center content">
             {movies.map(movie => <MovieCard key={movie.id} movie={movie} imageConfig={imageConfig}/>)}

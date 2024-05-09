@@ -1,7 +1,9 @@
 import {getImageConfig} from "@/app/_lib/image-config-api";
 import TitleFilter from "@/app/components/movies/TitleFilter";
 import {MoviesGrid} from "@/app/components/movies/MoviesGrid";
+import {Movie} from "@/app/_model/movie";
 import {getMovies} from "@/app/_lib/movies-api";
+import {ScrollObserver} from "@/app/components/util/ScrollObserver";
 
 
 interface Props {
@@ -9,21 +11,13 @@ interface Props {
 }
 
 const MoviesPage = async ({searchParams}: Props) => {
-    const imageConfig = await getImageConfig();
-    const movies = await getMovies()
-
-    const filteredMovies = movies.filter((movie) => {
-        if (searchParams.filter) {
-            return movie.title.toLowerCase().includes(searchParams.filter.toLowerCase());
-        }
-        return true;
-    });
+    const imageConfig = await getImageConfig(); // Todo: Figure out how to avoid prop bubbling for the imageConfig
 
     return (
         <div className="d-flex flex-column min-vw-100 overflow-hidden">
-            <TitleFilter/>
+            <TitleFilter />
             <div className="overflow-auto">
-                <MoviesGrid imageConfig={imageConfig} movies={filteredMovies}></MoviesGrid>
+                <ScrollObserver filter={searchParams.filter} imageConfig={imageConfig}/>
             </div>
         </div>
     );

@@ -1,3 +1,5 @@
+'use server'
+
 import config from "@/next.config.mjs";
 import {Movie, MovieDetails} from "@/app/_model/movie";
 import FETCH_CONFIG from "@/app/_lib/fetch-config";
@@ -11,16 +13,21 @@ interface FetchMoviesResponse {
     total_results: number;
 }
 
-export const getMovies = async (): Promise<Movie[]> => {
-    const moviesUrl = `${config.env?.MOVIES_BASE_URL}/movie/popular`;
+export const getMovies = async (page:number): Promise<Movie[]> => {
+    const moviesUrl = `${config.env?.MOVIES_BASE_URL}/movie/popular?page=${page}`;
+    try {
     const res = await fetch(moviesUrl, FETCH_CONFIG);
-    const resJson: FetchMoviesResponse = await res.json();
+    const resJson = await res.json() as FetchMoviesResponse;
     return resJson.results;
+    } catch (e) {
+        console.error('Error fetching movies', e);
+        return [];
+    }
 }
 
 export const getMovie = async (id: string): Promise<MovieDetails> => {
     const moviesUrl = `${config.env?.MOVIES_BASE_URL}/movie/${id}`;
     const res = await fetch(moviesUrl, FETCH_OPTIONS);
-    return await res.json();
+    return await res.json() as MovieDetails;
 
 }

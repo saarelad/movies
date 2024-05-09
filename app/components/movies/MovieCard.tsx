@@ -8,7 +8,7 @@ interface Props {
     imageConfig: ImageConfig;
 }
 
-const MovieCard = async ({movie, imageConfig}: Props) => {
+const MovieCard = ({movie, imageConfig}: Props) => {
     const posterUrl = getPosterUrl(movie?.poster_path, imageConfig);
     return <Card imgSrc={posterUrl} imgAlt={movie.title} title={movie.title}
                  description={`Released: ${movie.release_date}`}
