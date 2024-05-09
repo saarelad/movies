@@ -43,7 +43,7 @@ export const ScrollObserver = ({imageConfig, filter}: Props) => {
     return (
         <>
             <MoviesGrid imageConfig={imageConfig} movies={filterMovies(movies)}/>
-            <div ref={ref} className="justify-content-center">
+            <div ref={ref} className="text-center">
                 Loading...
             </div>
         </>
