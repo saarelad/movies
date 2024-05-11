@@ -61,6 +61,7 @@ export const InfiniteScrollMoviesGrid = ({imageConfig, filter}: Props) => {
         setShouldLoadMore(true)
     }, [filter]);
 
+    // Apply filter on retrieved movies data
     useEffect(() => {
         const filteredMovies: Movie[] = filter ?
             moviesData.filter(m => m.title.toLowerCase().includes(filter.toLowerCase())) :
@@ -80,6 +81,7 @@ export const InfiniteScrollMoviesGrid = ({imageConfig, filter}: Props) => {
         }
     }, [currentPageRef.current, moviesToDisplayed]);
 
+    // Load more movies if needed
     useEffect(() => {
         if (inView && !isLoading && shouldLoadMore) {
             loadMoreData();
