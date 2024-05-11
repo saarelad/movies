@@ -4,7 +4,7 @@ import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {ChangeEvent, useCallback, useEffect, useState} from "react";
 
 export default function TitleFilter() {
-    const [searchTerm, setSearchTerm] = useState<string>("")
+    const [inputValue, setInputValue] = useState<string>("");
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
@@ -19,23 +19,19 @@ export default function TitleFilter() {
         [searchParams]
     );
 
-    useEffect(() => {
-        setSearchTerm(searchParams.get("filter") || "");
-    }, [searchParams]);
-
-    useEffect(() => {
-        searchTerm ?
-            router.push(`${pathname}?${createQueryString("filter", searchTerm)}`) :
+    const applyFilter = (value:string) => {
+        value ?
+            router.push(`${pathname}?${createQueryString("filter", inputValue)}`) :
             router.push(`${pathname}`);
-    }, [searchTerm, pathname, router, createQueryString]);
+    }
 
-
-    const applyFilter = (e: ChangeEvent<HTMLInputElement>) => {
-        setSearchTerm(e.target.value);
+    const onInputChange = (e:ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value);
     };
 
     const handleReset = () => {
-        setSearchTerm("");
+        setInputValue("");
+        applyFilter("");
     };
 
     return (
@@ -44,10 +40,11 @@ export default function TitleFilter() {
             <input
                 type="text"
                 className="rounded"
-                value={searchTerm}
-                onChange={applyFilter}
+                value={inputValue}
+                onChange={onInputChange}
             />
-            <button className="btn btn-primary" onClick={handleReset}>Reset</button>
+            <button className="btn btn-primary" onClick={() => applyFilter(inputValue)}>Search</button>
+            <button className="btn btn-secondary" onClick={handleReset}>Reset</button>
         </div>
     );
 }

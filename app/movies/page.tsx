@@ -1,6 +1,6 @@
 import {getImageConfig} from "@/app/_lib/image-config-api";
 import TitleFilter from "@/app/components/movies/TitleFilter";
-import {ScrollObserver} from "@/app/components/util/ScrollObserver";
+import {InfiniteScrollMoviesGrid} from "@/app/components/movies/InfiniteScrollMoviesGrid";
 
 
 interface Props {
@@ -13,9 +13,9 @@ const MoviesPage = async ({searchParams}: Props) => {
 
     return (
         <div className="d-flex flex-column min-vw-100 overflow-hidden">
-            <TitleFilter />
+            <TitleFilter/>
             <div className="overflow-auto">
-                <ScrollObserver filter={searchParams.filter} imageConfig={imageConfig}/>
+                <InfiniteScrollMoviesGrid filter={searchParams.filter} imageConfig={imageConfig}/>
             </div>
         </div>
     );
